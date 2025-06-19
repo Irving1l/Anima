@@ -6,6 +6,9 @@
 #include "Character/AnimaCharacterBase.h"
 #include "AnimaCharacter.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+
 /**
  * 
  */
@@ -14,4 +17,13 @@ class ANIMA_API AAnimaCharacter : public AAnimaCharacterBase
 {
 	GENERATED_BODY()
 	
+public:
+	AAnimaCharacter();
+
+private:
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<USpringArmComponent> SpringArm;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<UCameraComponent> CameraComponent;
 };
