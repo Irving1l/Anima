@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AbilitySystemInterface.h"
 #include "GameFramework/PlayerState.h"
 #include "AnimaPlayerState.generated.h"
 
@@ -14,12 +15,14 @@ class UAttributeSet;
  * 
  */
 UCLASS()
-class ANIMA_API AAnimaPlayerState : public APlayerState
+class ANIMA_API AAnimaPlayerState : public APlayerState, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 	
 public:
 	AAnimaPlayerState();
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 	
 protected:

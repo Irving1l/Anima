@@ -10,6 +10,11 @@ AAnimaCharacterBase::AAnimaCharacterBase()
 
 }
 
+UAbilitySystemComponent* AAnimaCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
 void AAnimaCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();

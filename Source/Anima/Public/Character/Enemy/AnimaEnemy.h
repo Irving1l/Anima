@@ -16,4 +16,10 @@ class ANIMA_API AAnimaEnemy : public AAnimaCharacterBase
 	
 public:
 	AAnimaEnemy();
+
+
+protected:
+	virtual void BeginPlay() override;
+
+
 };

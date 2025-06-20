@@ -10,6 +10,14 @@ AAnimaEnemy::AAnimaEnemy()
 {
 	AbilitySystemComponent = CreateDefaultSubobject<UAnimaAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 
 	AttributeSet = CreateDefaultSubobject<UAnimaAttributeSet>("AttributeSet");
+}
+
+void AAnimaEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 }

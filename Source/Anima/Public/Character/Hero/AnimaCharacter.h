@@ -19,6 +19,8 @@ class ANIMA_API AAnimaCharacter : public AAnimaCharacterBase
 	
 public:
 	AAnimaCharacter();
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -26,4 +28,8 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UCameraComponent> CameraComponent;
+
+
+	void InitAbilityActorInfo();
+
 };
