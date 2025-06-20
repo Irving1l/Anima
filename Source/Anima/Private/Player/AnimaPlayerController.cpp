@@ -4,6 +4,7 @@
 #include "Player/AnimaPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Character/Hero/AnimaCharacter.h"
 
 
 
@@ -63,4 +64,12 @@ void AAnimaPlayerController::Look(const FInputActionValue& InputActionValue)
 	NewControlRotation.Pitch = FMath::Clamp(NewControlRotation.Pitch - InputAxisVector.Y * 2.f, -80.f, 80.f);
 
 	SetControlRotation(NewControlRotation);
+
+	ACharacter* ControlledCharacter = Cast<ACharacter>(GetPawn());
+	if (ControlledCharacter)
+	{
+		ControlledCharacter->AddControllerYawInput(InputAxisVector.X * 2.f);
+		ControlledCharacter->AddControllerPitchInput(-InputAxisVector.Y * 2.f);
+	}
 }
+

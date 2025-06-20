@@ -3,17 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Character/AnimaCharacterBase.h"
-#include "AnimaEnemy.generated.h"
+#include "AttributeSet.h"
+#include "AnimaAttributeSet.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class ANIMA_API AAnimaEnemy : public AAnimaCharacterBase
+class ANIMA_API UAnimaAttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
 	
-public:
-	AAnimaEnemy();
 };

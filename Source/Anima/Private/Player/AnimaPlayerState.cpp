@@ -1,15 +1,16 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Character/Enemy/AnimaEnemy.h"
+#include "Player/AnimaPlayerState.h"
 #include "AbilitySystem/AnimaAbilitySystemComponent.h"
 #include "AbilitySystem/AnimaAttributeSet.h"
 
-
-AAnimaEnemy::AAnimaEnemy()
+AAnimaPlayerState::AAnimaPlayerState()
 {
 	AbilitySystemComponent = CreateDefaultSubobject<UAnimaAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
 
 	AttributeSet = CreateDefaultSubobject<UAnimaAttributeSet>("AttributeSet");
+
+	NetUpdateFrequency = 100.f;
 }
