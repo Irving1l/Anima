@@ -6,24 +6,18 @@
 #include "GameFramework/Character.h"
 #include "AnimaCharacterBase.generated.h"
 
-UCLASS()
+UCLASS(Abstract)//对于不用实例化的类，可以使用这个声明
 class ANIMA_API AAnimaCharacterBase : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	AAnimaCharacterBase();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	//UPROPERTY(EditAnywhere, Category = "Combat")
+	//TObjectPtr<UStaticMeshComponent> Weapon;
 
 };
