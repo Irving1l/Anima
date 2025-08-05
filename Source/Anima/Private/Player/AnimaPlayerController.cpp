@@ -22,7 +22,6 @@ void AAnimaPlayerController::BeginPlay()
 	{
 		Subsystem->AddMappingContext(AnimaContext, 0);
 	}
-
 }
 
 void AAnimaPlayerController::SetupInputComponent()
@@ -48,30 +47,15 @@ void AAnimaPlayerController::Move(const FInputActionValue& Value)
 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
 	}
-
 }
 
 void AAnimaPlayerController::Look(const FInputActionValue& Value)
 {
 	const FVector2D InputAxisVector = Value.Get<FVector2D>();
-
-	if (InputAxisVector.IsNearlyZero())
+	
+	if (ACharacter* ControlledCharacter = GetCharacter())
 	{
-		return;
+		ControlledCharacter->AddControllerYawInput(InputAxisVector.X);
+		ControlledCharacter->AddControllerPitchInput(InputAxisVector.Y);
 	}
-
-	FRotator NewControlRotation = GetControlRotation();
-
-	NewControlRotation.Yaw += InputAxisVector.X * 2.f;
-	NewControlRotation.Pitch = FMath::Clamp(NewControlRotation.Pitch - InputAxisVector.Y * 2.f, -80.f, 80.f);
-
-	SetControlRotation(NewControlRotation);
-
-	ACharacter* ControlledCharacter = Cast<ACharacter>(GetPawn());
-	if (ControlledCharacter)
-	{
-		ControlledCharacter->AddControllerYawInput(InputAxisVector.X * 2.f);
-		ControlledCharacter->AddControllerPitchInput(-InputAxisVector.Y * 2.f);
-	}
-
 }

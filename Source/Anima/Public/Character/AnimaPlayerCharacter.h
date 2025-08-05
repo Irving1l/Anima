@@ -6,6 +6,7 @@
 #include "Character/AnimaCharacterBase.h"
 #include "AnimaPlayerCharacter.generated.h"
 
+struct FInputActionValue;
 /**
  * 
  */
@@ -13,5 +14,7 @@ UCLASS()
 class ANIMA_API AAnimaPlayerCharacter : public AAnimaCharacterBase
 {
 	GENERATED_BODY()
+
+public:
 	
 };
