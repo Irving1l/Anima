@@ -14,9 +14,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b110bd1b-7b1d-43a5-867e-d4998d950da7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Anima/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Anima/Private/Character/AnimaPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Anima/Private/Character/AnimaPlayerCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Anima/Anima.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Anima/Anima.Build.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Anima/Private/Player/AnimaPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Anima/Private/Player/AnimaPlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Anima/Public/Character/AnimaPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Anima/Public/Character/AnimaPlayerCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Anima/Public/Player/AnimaPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Anima/Public/Player/AnimaPlayerController.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +30,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://3" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Anima/Private/Character/AnimaEnemyCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Anima/Private/Character/AnimaPlayerCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Anima/Public/Character/AnimaEnemyCharacter.h" root0="FORCE_HIGHLIGHTING" />
@@ -203,6 +202,9 @@
       <workItem from="1754308091694" duration="9447000" />
       <workItem from="1754391814607" duration="1334000" />
       <workItem from="1754394392022" duration="2904000" />
+      <workItem from="1754478784073" duration="2583000" />
+      <workItem from="1754484655109" duration="2470000" />
+      <workItem from="1754487624782" duration="4366000" />
     </task>
     <servers />
   </component>

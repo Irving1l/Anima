@@ -5,6 +5,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Character/AnimaPlayerCharacter.h"
+#include "InventoryUI/HUD/Inv_HUDWidget.h"
 
 
 AAnimaPlayerController::AAnimaPlayerController()
@@ -22,6 +23,7 @@ void AAnimaPlayerController::BeginPlay()
 	{
 		Subsystem->AddMappingContext(AnimaContext, 0);
 	}
+	CreateHUDWidget();
 }
 
 void AAnimaPlayerController::SetupInputComponent()
@@ -31,6 +33,23 @@ void AAnimaPlayerController::SetupInputComponent()
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent);
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAnimaPlayerController::Move);
 	EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAnimaPlayerController::Look);
+	EnhancedInputComponent->BindAction(PrimaryInteractAction, ETriggerEvent::Started, this, &AAnimaPlayerController::PrimaryInteract);
+}
+
+void AAnimaPlayerController::PrimaryInteract()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Primary Interact"));
+}
+
+void AAnimaPlayerController::CreateHUDWidget()
+{
+	if (!IsLocalPlayerController()) return;
+
+	Inv_HUDWidget = CreateWidget<UInv_HUDWidget>(this, Inv_HUDWidgetClass);
+	if (IsValid(Inv_HUDWidget))
+	{
+		Inv_HUDWidget->AddToViewport();
+	}
 }
 
 void AAnimaPlayerController::Move(const FInputActionValue& Value)
