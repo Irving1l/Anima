@@ -21,6 +21,7 @@ class ANIMA_API AAnimaPlayerController : public APlayerController
 
 public:
 	AAnimaPlayerController();
+	virtual void Tick(float DeltaTime) override;
 
 protected:
 	virtual void BeginPlay() override;
@@ -29,6 +30,7 @@ protected:
 private:
 	void PrimaryInteract();
 	void CreateHUDWidget();
+	void TraceForItem();
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputMappingContext> AnimaContext;
@@ -47,6 +49,15 @@ private:
 
 	UPROPERTY()
 	TObjectPtr<UInv_HUDWidget> Inv_HUDWidget;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
+	double TraceLength;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
+	TEnumAsByte<ECollisionChannel> ItemTraceChannel;
+
+	TWeakObjectPtr<AActor> ThisActor;
+	TWeakObjectPtr<AActor> LastActor;
 	
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);

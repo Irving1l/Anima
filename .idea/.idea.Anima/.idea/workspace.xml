@@ -14,7 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b110bd1b-7b1d-43a5-867e-d4998d950da7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Anima/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Anima/Anima.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Anima/Anima.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Anima/Private/Player/AnimaPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Anima/Private/Player/AnimaPlayerController.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Anima/Public/Player/AnimaPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Anima/Public/Player/AnimaPlayerController.h" afterDir="false" />
     </list>
@@ -30,6 +30,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="cidr-memory-view://1" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Anima/Private/Character/AnimaEnemyCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Anima/Private/Character/AnimaPlayerCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Anima/Public/Character/AnimaEnemyCharacter.h" root0="FORCE_HIGHLIGHTING" />
@@ -53,7 +54,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "C/C++ Project.Anima.executor": "Debug",
+    "C/C++ Project.Anima.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -205,6 +206,7 @@
       <workItem from="1754478784073" duration="2583000" />
       <workItem from="1754484655109" duration="2470000" />
       <workItem from="1754487624782" duration="4366000" />
+      <workItem from="1754564128435" duration="7179000" />
     </task>
     <servers />
   </component>

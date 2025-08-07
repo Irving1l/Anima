@@ -6,11 +6,22 @@
 #include "EnhancedInputComponent.h"
 #include "Character/AnimaPlayerCharacter.h"
 #include "InventoryUI/HUD/Inv_HUDWidget.h"
+#include "Kismet/GameplayStatics.h"
 
 
 AAnimaPlayerController::AAnimaPlayerController()
 {
 	bReplicates = true;
+	PrimaryActorTick.bCanEverTick = true;
+	TraceLength = 500.0;
+	//ItemTraceChannel = ECC_GameTraceChannel1;
+}
+
+void AAnimaPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	TraceForItem();
 }
 
 void AAnimaPlayerController::BeginPlay()
@@ -34,22 +45,6 @@ void AAnimaPlayerController::SetupInputComponent()
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAnimaPlayerController::Move);
 	EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAnimaPlayerController::Look);
 	EnhancedInputComponent->BindAction(PrimaryInteractAction, ETriggerEvent::Started, this, &AAnimaPlayerController::PrimaryInteract);
-}
-
-void AAnimaPlayerController::PrimaryInteract()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Primary Interact"));
-}
-
-void AAnimaPlayerController::CreateHUDWidget()
-{
-	if (!IsLocalPlayerController()) return;
-
-	Inv_HUDWidget = CreateWidget<UInv_HUDWidget>(this, Inv_HUDWidgetClass);
-	if (IsValid(Inv_HUDWidget))
-	{
-		Inv_HUDWidget->AddToViewport();
-	}
 }
 
 void AAnimaPlayerController::Move(const FInputActionValue& Value)
@@ -78,3 +73,50 @@ void AAnimaPlayerController::Look(const FInputActionValue& Value)
 		ControlledCharacter->AddControllerPitchInput(InputAxisVector.Y);
 	}
 }
+
+void AAnimaPlayerController::PrimaryInteract()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Primary Interact"));
+}
+
+void AAnimaPlayerController::CreateHUDWidget()
+{
+	if (!IsLocalPlayerController()) return;
+
+	Inv_HUDWidget = CreateWidget<UInv_HUDWidget>(this, Inv_HUDWidgetClass);
+	if (IsValid(Inv_HUDWidget))
+	{
+		Inv_HUDWidget->AddToViewport();
+	}
+}
+
+void AAnimaPlayerController::TraceForItem()
+{
+	if (!IsValid(GEngine) && !IsValid(GEngine->GameViewport)) return;
+	FVector2D ViewportSize;
+	GEngine->GameViewport->GetViewportSize(ViewportSize);
+	const FVector2D ViewportCenter = ViewportSize / 2.f;
+	FVector TraceStart;
+	FVector TraceForward;//未返回，则TraceStart、TraceForward有效
+	if (!UGameplayStatics::DeprojectScreenToWorld(this, ViewportCenter, TraceStart, TraceForward)) return;
+	
+	const FVector TraceEnd = TraceStart + TraceForward * TraceLength;
+	FHitResult HitResult;
+
+	GetWorld()->LineTraceSingleByChannel(HitResult, TraceStart, TraceEnd, ItemTraceChannel);
+
+	LastActor = ThisActor;
+	ThisActor = HitResult.GetActor();
+	if (ThisActor == LastActor) return;
+	if (ThisActor.IsValid())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Started tracing a new actor."));
+	}
+	if (LastActor.IsValid())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Stopped tracing last actor."));
+	}
+}
+
+
+
