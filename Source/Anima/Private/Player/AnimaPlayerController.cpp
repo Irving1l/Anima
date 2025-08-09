@@ -6,6 +6,8 @@
 #include "EnhancedInputComponent.h"
 #include "Character/AnimaPlayerCharacter.h"
 #include "InventoryUI/HUD/Inv_HUDWidget.h"
+#include "Item/Component/Inv_Highlightable.h"
+#include "Item/Component/Inv_ItemComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -14,7 +16,7 @@ AAnimaPlayerController::AAnimaPlayerController()
 	bReplicates = true;
 	PrimaryActorTick.bCanEverTick = true;
 	TraceLength = 500.0;
-	//ItemTraceChannel = ECC_GameTraceChannel1;
+	ItemTraceChannel = ECC_GameTraceChannel1;
 }
 
 void AAnimaPlayerController::Tick(float DeltaTime)
@@ -107,14 +109,31 @@ void AAnimaPlayerController::TraceForItem()
 
 	LastActor = ThisActor;
 	ThisActor = HitResult.GetActor();
+
+	if (!ThisActor.IsValid())
+	{
+		if (IsValid(Inv_HUDWidget)) Inv_HUDWidget->HidePickupMessage();
+	}
+	
 	if (ThisActor == LastActor) return;
 	if (ThisActor.IsValid())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Started tracing a new actor."));
+		if (UActorComponent* Hightlightable = ThisActor->FindComponentByInterface(UInv_Highlightable::StaticClass()); IsValid(Hightlightable))//如果该组件实现了接口，就调用函数
+		{
+			IInv_Highlightable::Execute_Highlight(Hightlightable);
+		}
+		
+		UInv_ItemComponent* ItemComponent = ThisActor->FindComponentByClass<UInv_ItemComponent>();
+		if (!IsValid(ItemComponent)) return;
+
+		if (IsValid(Inv_HUDWidget)) Inv_HUDWidget->ShowPickupMessage(ItemComponent->GetPickupMessage());
 	}
 	if (LastActor.IsValid())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Stopped tracing last actor."));
+		if (UActorComponent* Hightlightable = LastActor->FindComponentByInterface(UInv_Highlightable::StaticClass()); IsValid(Hightlightable))
+		{
+			IInv_Highlightable::Execute_UnHighlight(Hightlightable);
+		}
 	}
 }
 
